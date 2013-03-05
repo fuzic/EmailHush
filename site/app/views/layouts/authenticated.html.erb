@@ -8,6 +8,8 @@
 	<%= csrf_meta_tags %>
 	<%= yield(:head) %>
 
+	<%= analytics_init if Rails.env.production? %>
+
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 	<script type="text/javascript" src="//use.typekit.net/tcf7drb.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>

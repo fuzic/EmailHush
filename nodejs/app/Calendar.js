@@ -5,7 +5,7 @@
 	var moment  = require( 'moment' );
 	var db      = require( './Database' );
 	var time    = require( 'time' )( Date );
-	var opts    = require( '../googleapi.yml' );
+	var opts    = require( '../config/googleapi.yml' );
 
 	var apiKey = opts.api_key;
 	var updateHour = 3;

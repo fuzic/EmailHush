@@ -61,8 +61,4 @@ module Emailhush
     config.assets.precompile += ['jquery.js']
     config.autoload_paths += %W(#{config.root}/lib)
   end
-
-  if Rails.env == "production"
-    config.middleware.use("Rack::GoogleAnalytics", :web_property_id => "UA-37993138-1")
-  end
 end

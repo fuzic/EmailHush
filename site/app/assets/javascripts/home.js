@@ -369,7 +369,7 @@ $(window).resize(function() {
 		$('#launchGmail').click( function(e) {
 			e.preventDefault();
 			e.stopPropagation();
-			w1 = EmailHush.home.launch('https://mail.google.com/mail/u/0/#create-filter/to=*','eh_gmail');
+			w1 = EmailHush.generic.launch('https://mail.google.com/mail/u/0/#create-filter/to=*','eh_gmail');
 			$("#launchedGmail").show();
 			w1c = false;
 			$('#launchGmail button').removeClass('green_button').addClass('gray_button');
