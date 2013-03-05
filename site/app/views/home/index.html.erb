@@ -1,0 +1,257 @@
+<script type="text/javascript">
+	$(document).ready(function () {
+		EmailHush.home.init();
+		EmailHush.home.setState(<%= @state %>);
+	});
+
+	function showConnecting () {
+		$('#connecting').dialog({
+			closeOnEscape: false,
+			resizable: false,
+			open: function(event, ui) { $('.ui-dialog-titlebar').hide(); },
+			modal: true,
+			dialogClass: 'loading_dialog connecting'
+		});
+	}
+</script>
+
+<div style="display: none;">
+	<div id="connecting">
+		Connecting with Google
+		<br>
+		<%= image_tag "throbber.gif", :size => "32x32" %>
+	</div>
+	
+	<div id="gmailInit">
+		Creating GMail Label
+		<br>
+		<%= image_tag "throbber.gif", :size => "32x32" %>
+	</div>
+
+	<div id="gcalInit">
+		Initializing Calendar
+		<br>
+		<%= image_tag "throbber.gif", :size => "32x32" %>
+	</div>
+</div>
+
+
+<div class="content_subsection">
+	<% if current_user %>
+	<div class="welcome_container">
+		<span class="welcome">Howdy <%= session[:user_name] %>!</span> <span class="tiny_text">(<a class="tiny_link" href="/signout">Sign out</a>)</span><br>
+	</div>
+	<% end %>
+</div>
+
+<div id="start" class="content_tutorial_section">
+	<div class="step_pointer">
+		<a id="stepNextMsg"></a>
+	</div>
+	<ol class="steps">
+		<li>
+			<a <%= "href=/auth/google_oauth2" unless current_user %> <%= "onclick=showConnecting();" unless current_user %>>
+				<span id="stage1_step1">
+					<div class="piecewise_image" id="lock"></div>
+					<div class="piecewise_image" id="lockkey"></div>
+					<div class="step_top">
+						<span class="filler"></span>
+						<br>
+						Sign in with Google
+					</div>
+				</span>
+			</a>
+		</li>
+		<li>
+			<a id="filter_button">
+				<span id="stage1_step2">
+					<div class="piecewise_image" id="bin1_back"></div>
+					<div class="piecewise_image" id="bin2_back"></div>
+					<div class="piecewise_image" id="mail"></div>
+					<div class="piecewise_image" id="bin1_front"></div>
+					<div class="piecewise_image" id="bin2_front"></div>
+					<div class="step_top">
+						<span class="filler"></span>
+						<br>
+						Create a mail filter
+					</div>
+				</span>
+			</a>
+		</li>
+		<li>
+			<a id="schedule_button">
+				<span id="stage1_step3">
+					<div class="piecewise_image" id="clockback"></div>
+					<div class="piecewise_image" id="schedule"></div>
+					<div class="piecewise_image" id="clockface"></div>
+
+					<div class="step_top">
+						<span class="filler"></span>
+						<br>
+						Set your schedule
+					</div>
+				</span>
+			</a>
+		</li>
+	</ol>
+
+	<% unless current_user %>
+	<div class="centered_subsection">
+		Already registered? <a href="/auth/google_oauth2" onclick="showConnecting();"><button class="blue_button">Sign in</button></a>
+	</div>
+	<% end %>
+</div>
+
+<div id="what" class="content_section">
+	<div class="content_header">
+		What is it?
+	</div>
+
+	<div class="spacer"></div>
+
+	<div class="subsection_header">
+		These days we're always connected.
+		<br>
+		EmailHush separates work from life by delivering mail on <emph>your</emph> schedule.
+	</div>
+	<div class="content_subsection">
+		<h1>EmailHush is <span class="underline">simple</span>.</h1>
+	</div>
+	<div class="airplane_container">
+		<div class="airplane_path"></div>
+		<div class="airplane_target"></div>
+		<div class="airplane">
+			<div class="left_wing">
+				<div class="plane_frame1">
+					<figure class="body"></figure>
+					<figure class="fold"></figure>
+					<figure class="fold shad"></figure>
+				</div>
+				<div class="plane_frame2">
+					<figure class="body"></figure>
+					<figure class="fold"></figure>
+					<figure class="fold shad"></figure>
+				</div>
+				<div class="plane_frame3">
+					<figure class="body"></figure>
+					<figure class="body shad"></figure>
+					<figure class="fold"></figure>
+				</div>
+				<div class="plane_frame4">
+					<figure class="body"></figure>
+				</div>
+			</div>
+			<div class="right_wing">
+				<div class="plane_frame1">
+					<figure class="body"></figure>
+					<figure class="fold"></figure>
+					<figure class="fold shad"></figure>
+				</div>
+				<div class="plane_frame2">
+					<figure class="body"></figure>
+					<figure class="fold"></figure>
+					<figure class="fold shad"></figure>
+				</div>
+				<div class="plane_frame3">
+					<figure class="body"></figure>
+					<figure class="body shad"></figure>
+					<figure class="fold"></figure>
+				</div>
+				<div class="plane_frame4">
+					<figure class="body"></figure>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content_subsection">
+		<span class="frame_text">
+			Pick which emails you want to schedule.
+			<br><br>
+			Could be all your mail, or maybe just mail related to work.
+		</span>
+		<span class="frame_pic right_pic">
+			<%= image_tag "stage2step1.png", :size => "218x200" %>
+		</span>
+	</div>
+	<div class="content_subsection">
+		<span class="frame_pic left_pic">
+			<%= image_tag "stage2step2.png", :size => "212x200" %>
+		</span>
+		<span class="frame_text">
+			Then, set your schedule.<br><br>You will only receive mail during times you mark as O.K.
+		</span>
+	</div>
+	<div class="content_subsection">
+		<span class="frame_text">
+			Change of plans? No problem!
+			<br><br>
+			Enable or disable mail delivery via the web interface so you can keep up with those after-hours meetings.
+		</span>
+		<span class="frame_pic right_pic">
+			<%= image_tag "stage2step3.png", :size => "220x160" %>
+		</span>
+	</div>
+	
+	<div class="content_subsection">
+		<h1>Ready to start relaxing?</h1>
+	</div>
+	<div class="centered_subsection">
+		<% if current_user %>
+		<a href="#start"><button class="blue_button">Finish setting up your account</button></a>
+		<% else %>
+		To get started, <a href="/auth/google_oauth2" onclick="showConnecting();"><button class="blue_button">Sign in with Google</button></a>
+		<% end %>
+	</div>
+</div>
+
+<div id="new" class="content_section">
+	<div class="content_header">
+		What&#8217;s new
+	</div>
+
+	<div class="spacer"></div>
+
+	<div class="content_subsection">
+		<div class="section_message">
+			Nothing yet... check back soon!
+		</div>
+	</div>
+</div>
+</div>
+
+<div style="display: none;">
+<div id="tutorial_mustcomplete" title="Continue later...">
+	<div class="dialog_container">
+		<div>
+			You can do this later...
+		</div>
+		<div>
+			But remember, your mail won't be scheduled until you complete the setup!
+		</div>
+		<div>
+			<button class="blue_button" id="setupSkip">Got it</button>
+		</div>
+	</div>
+</div>
+
+<div id="tutorial_complete" title="Setup complete">
+	<div class="dialog_container">
+		<div class="spaced_subsection">
+			<span class="dialog_header">
+				You're done!
+			</span>
+		</div>
+		<div class="spaced_subsection">
+			Assuming you followed the steps correctly, your mail is now being scheduled by EmailHush!
+		</div>
+		<div class="spaced_subsection">
+			You will now be redirected to the dashboard.
+		</div>
+		<div>
+			<button class="green_button" id="setupDone">Let's go!</button>
+		</div>
+	</div>
+</div>
+
+<%= render :template => 'tutorial/dialogs' %>
+

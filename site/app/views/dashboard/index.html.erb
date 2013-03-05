@@ -1,0 +1,168 @@
+<script type="text/javascript">
+	$('#linkDash').addClass('active');
+
+	$(document).ready(function () {
+		EmailHush.dash.init();
+	});
+</script>
+
+<div class="subnav_bar">
+	<ul>
+		<li>
+			<a href="#status" class="active">
+				Status
+			</a>
+		</li>
+		<li>
+			<a href="#filter">
+				Filters
+			</a>
+		</li>
+		<li>
+			<a href="#schedule">
+				Schedule
+			</a>
+		</li>
+		<li>
+			<a href="#account">
+				Account
+			</a>
+		</li>
+	</ul>
+	<div class="subnav_highlight"></div>
+</div>
+
+<div class="dash_content">
+	<div id="status" class="dash_subcontent">
+		<div class="dash_large" id="nowDate"></div>
+		<div class="dash_medium dash_subleft">
+			<span class="faint">Local time is</span> <span id="nowTime"></span>
+		</div>
+		<div class="dash_plot_row">
+			<div class="dash_plot <%= "scheduleBlocked" if current_user.override == 1 %>" id="dashSchedule">
+
+			</div>
+			<br>
+			<span class="scheduleRowLabel"></span>
+			<span class="scheduleRowAnnotation">
+				<span class="field_label">Last updated:</span>
+				<span class="field_val"><%= @last_updated.to_i() == 0 ? 'Never' : "#{time_ago_in_words(@last_updated)} ago" %></span>
+			</span>
+		</div>
+		<div class="dash_row">
+			<span class="embed_container">
+				<span class="field_label">Override schedule:</span>
+				<span class="switch_container">
+					<span class="field_val">
+						<select id="override">
+							<option <%= "selected" if current_user.override == 0 %>>Off</option>
+							<option <%= "selected" if current_user.override == 1 %>>On</option>
+						</select>
+					</span>
+				</span>
+				<span class="switch_container">
+					<span class="field_val" id="overrideModeContainer">
+						<div class="field_val_disable"></div>
+						<select id="overrideMode">
+							<option <%= "selected" if current_user.override_mode == 0 %>>Hold</option>
+							<option <%= "selected" if current_user.override_mode == 1 %>>Deliver</option>
+						</select>
+					</span>
+				</span>
+			</span>
+		</div>
+		<div class="dash_row">
+			<span class="field_label">Current status:</span>
+			<span class="field_status_hold" id="mailStatus">Holding Mail</span>
+		</div>
+	</div>
+	<div id="filter" class="dash_subcontent">
+		<div class="dash_section_tag">
+			Filters
+		</div>
+		<div style="clear:left;"></div>
+		<div>
+			Someone abusing the email send button after hours?
+		</div>
+		<div>
+			To change your filters,
+			<a id="changeGmail" href="https://mail.google.com/mail/u/0/?shva=1#settings/filters" target="eh_gmail2">
+				<button class="blue_button">open GMail Filters</button>
+			</a>
+		</div>
+		<div>
+			<div>
+				<span id="graphVolDay" class="graph_full"></span><br>
+				<span id="graphVolHour" class="graph_full"></span>
+			</div>
+		</div>
+	</div>
+	<div id="schedule" class="dash_subcontent">
+		<div class="dash_section_tag">
+			Schedule
+		</div>
+		<div style="clear:left;"></div>
+		<div>
+			Planning vacation? New work hours?
+		</div>
+		<div>
+			To change your schedule,
+			<a id="changeGcal" href="https://www.google.com/calendar/render?pli=1" target="eh_gcal2">
+				<button class="blue_button">open Google Calendar</button>
+			</a>
+		</div>
+		<div>
+			<span id="graphDistHold" class="graph_full"></span>
+		</div>
+	</div>
+	<div id="account" class="dash_subcontent">
+		<div class="dash_section_tag">
+			Account
+		</div>
+		<div style="clear:left;"></div>
+		<div class="dash_mediumlarge">
+			<span class="">
+				<span class="avoid_wrap">
+					Howdy
+					<span class="unbreakable">
+						<span class="editable_container">
+							<input type="text" id="dashNameField" value="<%= @username %>" size="<%= 1 + @username.length %>" maxlength="32">
+							<br>
+							<span class="subtext">
+								<div class="subtext_displace">
+									[<span class="link_text" id="dashNameButton">change my name</span>]
+								</div>
+							</span>
+						</span>!
+					</span>
+				</span>
+				<span class="avoid_wrap">
+					You signed up
+					<%= @created.strftime("%B %-d<sup>#{@created.day>10 && @created.day<14 ? 'th' : @ordinance[@created.day%10]}</sup>, %Y").html_safe %>
+				</span>
+
+				<% cache do %>
+				<div class="dash_plot" id="timezonePicker">
+					<%= image_tag "map.png", :size => "874x437", :id => "timezoneImage", :usemap => "#timezoneMap" %>
+					<map name="timezoneMap" id="timezoneMap">
+					<% @timezones.each do |(timezone_name, timezone)| %>
+						<% timezone['polys'].each do |coords| %>
+							<area data-timezone="<%= timezone_name %>" data-offset="<%= timezone['offset'] %>" shape="poly" coords="<%= coords.join(',') %>" />
+						<% end %>
+						<% timezone['rects'].each do |coords| %>
+							<area data-timezone="<%= timezone_name %>" data-offset="<%= timezone['offset'] %>" shape="rect" coords="<%= coords.join(',') %>" />
+						<% end %>
+					<% end %>
+					</map>
+				</div>
+				<div class="dash_subrow">
+					Current Timezone: <label><%= time_zone_select("user", "time_zone") %></label>
+				</div>
+				<% end %>
+			</span>
+		</div>
+	</div>
+</div>
+<div style="clear:both;"></div>
+
+<%= render :template => 'tutorial/dialogs' %>

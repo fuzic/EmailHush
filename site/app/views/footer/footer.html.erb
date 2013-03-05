@@ -1,0 +1,26 @@
+<div id="footer">
+	<div class="footer_top">
+	</div>
+	
+	<div class="footer_row">
+		<ul>
+			<!--<li>
+				<a class="footer_link">About</a>
+			</li>-->
+			<li>
+				<a href="http://twitter.com/emailhush" class="footer_link">Twitter</a>
+			</li>
+			<li>
+				<a class="footer_link" href="mailto:echo@emailhush.com">Contact</a>
+			</li>
+		</ul>
+	</div>
+	<div class="footer_row">
+		Use of this site constitutes acceptance of our
+		<%= link_to "Terms of Use", { :controller => 'terms', :action => 'show' }, :class => 'footer_link' %>
+		and
+		<%= link_to "Privacy Policy", { :controller => 'privacy', :action => 'show' }, :class => 'footer_link' %>
+		<br>
+		&copy; 2013 Mark Richardson. All Rights Reserved
+	</div>
+</div>

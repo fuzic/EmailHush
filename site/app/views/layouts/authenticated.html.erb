@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= content_for?(:title) ? yield(:title) + " | EmailHush" : "EmailHush" %></title>
+	<%= stylesheet_link_tag    "application" %>
+	<%= jquery_include_tag     :google %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+	<%= yield(:head) %>
+
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	<script type="text/javascript" src="//use.typekit.net/tcf7drb.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	
+	<meta name="description" content="EmailHush lets you separate work from life. Create a filter for emails, and EmailHush will deliver them to you on your schedule.">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div id="nav_menu" class="auth_nav_bar">
+			<span id="auth_mini_logo">
+				<%= image_tag "logo2.png", :size => "151x45" %>
+			</span>
+			<ul class="left_menu">
+				<li>
+					<%= link_to "Dashboard", { :controller => 'dashboard', :action => 'index' }, :id => "linkDash" %>
+				</li>
+				<li>
+					<%= link_to "Help & FAQ", { :controller => 'help', :action => 'show' }, :id => "linkHelp" %>
+				</li>
+			</ul>
+
+			<ul class="auth_right_menu">
+				<li>
+					<a href="/signout">Sign out</a>
+				</li>
+			</ul>
+		</div>
+
+		<div id="auth_content">
+			<%= yield %>
+		</div>
+
+		<%= render :template => 'footer/footer' %>
+	</div>
+
+</body>
+</html>

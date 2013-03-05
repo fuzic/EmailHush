@@ -1,0 +1,146 @@
+<div style="display: none;">
+	<div id="tutorial_schedule" title="Set your schedule" targetWidth="500">
+		<div class="dialog_container">
+			<div class="spaced_subsection">
+				<span class="dialog_header">
+					You're almost done!
+				</span>
+			</div>
+			<div class="spaced_subsection">
+				Your Google Calendar has an EmailHush calendar.
+			</div>
+			<div class="spaced_subsection">
+				Events in the EmailHush calendar mark times when mail is delivered.
+			</div>
+			<div class="spaced_subsection">
+				EmailHush has already set up weekdays 9am - 5pm as mail-delivery times.
+			</div>
+			<div class="spaced_subsection">
+				Want to change when mail is delivered?
+				<br>
+				<span class="frame_generic">
+					Add or remove events from the EmailHush calendar.
+				</span>
+				<span class="frame_generic">
+					<a id="launchGcal" href="https://www.google.com/calendar/render?pli=1" target="eh_gcal">
+						<button class="blue_button">open Google Calendar</button>
+				    </a>
+				</span>
+			</div>
+			<div>
+				<button class="gray_button" id="scheduleLater">I'll do this later</button>
+				<span class="button_spacer"></span>
+				<button class="green_button" id="scheduleDone">I'm all set</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="tutorial_filter" title="Create a mail filter" targetWidth="640">
+		<div class="dialog_container">
+			<div class="content_subsection">
+				To get started,
+				<a id="launchGmail" href="https://mail.google.com/mail/u/0/#create-filter/to=*" target="eh_gmail2">
+					<button class="green_button">open GMail</button>
+		        </a>
+		        <span id="launchedGmail" class="success_msg" style="display:none;">&#x2713;</span>
+			</div>
+
+			<div class="content_subsection">
+				<span class="tutorial_text">
+					<div class="tutorial_step">
+						Set criteria for mail to be scheduled<br>
+						<span class="tutorial_note">To schedule all your mail, leave the criteria as <code>to:*</code></span>
+					</div>
+					<div class="tutorial_step">
+						Click &quot;create filter with this search&quot;
+					</div>
+				</span>
+				<span class="tutorial_pic">
+					<%= image_tag "filter_ss1.png", :size => "227x183" %>
+				</span>
+			</div>
+
+			<div class="content_subsection">
+				<div class="ui-state-highlight" style="font-size: 0.8em; margin: 0.5em 0;">
+					<span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+					If a dialog appears warning you about the use of special characters in your search, simply press &quot;Ok&quot;
+				</div>
+			</div>
+
+			<div class="content_subsection">
+				<span class="tutorial_text">
+					<div class="tutorial_step">
+						Check the checkboxes next to:
+						<ul>
+							<li>Skip the Inbox (Archive it)</li>
+							<li>Mark as read</li>
+							<li>Apply the label: Choose label...</li>
+						</ul>
+					</div>
+					<div class="tutorial_step">
+						Set the label to &quot;EmailHush&quot;
+					</div>
+					<div class="tutorial_step">
+						Click &quot;Create filter&quot; and you're done!
+					</div>
+				</span>
+				<span class="tutorial_pic">
+					<%= image_tag "filter_ss2.png", :size => "227x172" %>
+				</span>
+			</div>
+
+			<button class="gray_button" id="filterLater">I'll do it later</button>
+			<span class="button_spacer"></span>
+			<button class="gray_button" id="filterDone">I followed these steps</button>
+		</div>
+	</div>
+
+	<div id="tutorial2_schedule" title="Update your schedule" targetWidth="450">
+		<div class="dialog_container">
+			<div class="spaced_subsection">
+				Filtered mail is delivered during times you mark as &quot;busy&quot; on your EmailHush Calendar.
+			</div>
+			<div class="spaced_subsection">
+				Add or remove events from the EmailHush calendar to change your mail delivery schedule.
+				<br>
+				<a class="dash_small">(EmailHush will synchronize your changes every night at 3AM local time.)<br><br>If you need to make immediate changes, use the override feature on this page.</a>
+			</div>
+
+			<button class="green_button" id="changeScheduleClose">Got it!</button>
+		</div>
+	</div>
+
+	<div id="tutorial2_filter" title="Update mail filters" targetWidth="640">
+		<div class="dialog_container">
+			<div class="content_subsection">
+				You can remove or change existing EmailHush filters.
+				<br>
+				<a class="dash_small">(look for filters that say <emph>Apply label &quot;EmailHush&quot;</emph>).</a>
+				<br><br>
+				<a class="dash_normal"><emph>Remember!</emph> You must set these options when creating/editing filters:</a>
+				<br><br>
+				<span class="tutorial_text">
+					<div class="tutorial_step">
+						Check the checkboxes next to:
+						<ul>
+							<li>Skip the Inbox (Archive it)</li>
+							<li>Mark as read</li>
+							<li>Apply the label: Choose label...</li>
+						</ul>
+					</div>
+					<div class="tutorial_step">
+						Set the label to &quot;EmailHush&quot;
+					</div>
+					<div class="tutorial_step">
+						Click &quot;Create filter&quot; to complete the new filter.
+					</div>
+				</span>
+				<span class="tutorial_pic">
+					<%= image_tag "filter_ss2.png", :size => "227x172" %>
+				</span>
+			</div>
+
+			<button class="green_button" id="changeFilterClose">Got it!</button>
+		</div>
+	</div>
+</div>

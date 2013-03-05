@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  from_time: 2013-02-04 19:49:21
+  to_time: 2013-02-04 19:49:21
+  count: 
+
+two:
+  from_time: 2013-02-04 19:49:21
+  to_time: 2013-02-04 19:49:21
+  count: 

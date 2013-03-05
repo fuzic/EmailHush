@@ -1,0 +1,5 @@
+*~
+config/*.yml
+app/node_modules
+.*
+!/.gitignore
